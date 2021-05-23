@@ -126,6 +126,9 @@ dependencies {
 	compileOnly 'org.apache.kafka:connect-json:1.1.0' // Convert Kafka Connect data to JSON format.
 	compileOnly 'io.confluent:kafka-connect-avro-converter:5.0.0' // Convert Kafka Connect data to Apache Avro format.
 	compile 'javax.jms:javax.jms-api:2.0'
+  compile 'org.apache.activemq:activemq-client:5.15.2'
+  compile 'org.apache.geronimo.specs:geronimo-j2ee-management_1.1_spec:1.0.1'
+  compile 'org.fusesource.hawtbuf:hawtbuf:1.11'
 
 	testCompile 'junit:junit:4.12'
 	testCompile 'org.apache.kafka:connect-api:1.1.0'
@@ -140,11 +143,11 @@ processResources {
 }
 
 // Create fat-JAR with all required dependencies.
-//jar {
-//	from {
-//		configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
-//	}
-//}
+jar {
+	from {
+		configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+	}
+}
 
 task wrapper(type: Wrapper) {
 	gradleVersion = '4.10.2'
